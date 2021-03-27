@@ -36,7 +36,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
     
     func test_load_requestsDataFromURL() {
-        let url = URL(string: "https://any-url.com")!
+        let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
         sut.load()
@@ -46,10 +46,14 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClient) {
+    private func makeSUT(url: URL? = nil) -> (sut: RemoteFeedLoader, client: HTTPClient) {
         let client = HTTPClient()
-        let sut = RemoteFeedLoader(url: url, client: client)
+        let sut = RemoteFeedLoader(url: url ?? anyURL(), client: client)
 
         return (sut, client)
+    }
+    
+    private func anyURL() -> URL {
+        URL(string: "https://any-url.com")!
     }
 }
