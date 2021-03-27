@@ -17,7 +17,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         let url = anyURL()
         let (sut, client) = makeSUT(url: url)
         
-        sut.load() { _ in }
+        sut.load { _ in }
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
@@ -27,11 +27,22 @@ class RemoteFeedLoaderTests: XCTestCase {
         let clientError = NSError(domain: "a client error", code: 42)
         
         var receivedErrors = [RemoteFeedLoader.Error?]()
-        sut.load() { receivedErrors.append($0) }
+        sut.load { receivedErrors.append($0) }
         
         client.complete(withError: clientError)
         
         XCTAssertEqual(receivedErrors, [.connectivity])
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        var receivedErrors = [RemoteFeedLoader.Error?]()
+        sut.load { receivedErrors.append($0) }
+        
+        client.complete(withStatusCode: 400)
+        
+        XCTAssertEqual(receivedErrors, [.invalidData])
     }
     
     // MARK: - Helpers
@@ -48,18 +59,23 @@ class RemoteFeedLoaderTests: XCTestCase {
     }
     
     private class HTTPClientSpy: HTTPClient {
-        private var receivedMessages = [(url: URL, completion: (Error?) -> Void)]()
+        private var receivedMessages = [(url: URL, completion: (Error?, HTTPURLResponse?) -> Void)]()
         
         var requestedURLs: [URL] {
             receivedMessages.map { $0.url }
         }
         
-        func get(from url: URL, completion: @escaping (Error?) -> Void) {
+        func get(from url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void) {
             receivedMessages.append((url, completion))
         }
         
         func complete(withError error: Error, at index: Int = 0) {
-            receivedMessages[index].completion(error)
+            receivedMessages[index].completion(error, nil)
+        }
+        
+        func complete(withStatusCode code: Int, at index: Int = 0) {
+            let response = HTTPURLResponse(url: requestedURLs[index], statusCode: code, httpVersion: nil, headerFields: nil)
+            receivedMessages[index].completion(nil, response)
         }
     }
 }
