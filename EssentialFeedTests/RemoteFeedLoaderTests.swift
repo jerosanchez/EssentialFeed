@@ -19,12 +19,8 @@ class RemoteFeedLoader {
     }
 }
 
-class HTTPClient {
-    var requestedURLs = [URL]()
-    
-    func get(from url: URL) {
-        requestedURLs.append(url)
-    }
+protocol HTTPClient {
+    func get(from url: URL)
 }
 
 class RemoteFeedLoaderTests: XCTestCase {
@@ -46,8 +42,8 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL? = nil) -> (sut: RemoteFeedLoader, client: HTTPClient) {
-        let client = HTTPClient()
+    private func makeSUT(url: URL? = nil) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
+        let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url ?? anyURL(), client: client)
 
         return (sut, client)
@@ -55,5 +51,13 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     private func anyURL() -> URL {
         URL(string: "https://any-url.com")!
+    }
+    
+    private class HTTPClientSpy: HTTPClient {
+        var requestedURLs = [URL]()
+        
+        func get(from url: URL) {
+            requestedURLs.append(url)
+        }
     }
 }
