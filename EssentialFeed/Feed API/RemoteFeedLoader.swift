@@ -36,14 +36,20 @@ public final class RemoteFeedLoader {
         client.get(from: url) { result in
             switch result {
             case let .success(data, response):
-                if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
-                    completion(.success(root.items.map { $0.model }))
-                } else {
-                    completion(.failure(.invalidData))
-                }
+                completion(RemoteFeedLoader.map(data, from: response))
             case .failure:
                 completion(.failure(.connectivity))
             }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private static func map(_ data: Data, from response: HTTPURLResponse) -> Result {
+        if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+            return .success(root.items.map { $0.model })
+        } else {
+            return .failure(.invalidData)
         }
     }
 }
