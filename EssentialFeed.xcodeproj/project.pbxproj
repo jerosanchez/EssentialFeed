@@ -12,6 +12,7 @@
 		CA19ED85260F4AC400B95C87 /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA19ED84260F4AC400B95C87 /* FeedLoader.swift */; };
 		CA19ED8B260F86B900B95C87 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA19ED8A260F86B900B95C87 /* RemoteFeedLoaderTests.swift */; };
 		CA19ED90260F8B5700B95C87 /* RemoteFeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA19ED8F260F8B5700B95C87 /* RemoteFeedLoader.swift */; };
+		CA90D90C2610F04700793199 /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90D90B2610F04700793199 /* FeedItemsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		CA19ED84260F4AC400B95C87 /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
 		CA19ED8A260F86B900B95C87 /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 		CA19ED8F260F8B5700B95C87 /* RemoteFeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoader.swift; sourceTree = "<group>"; };
+		CA90D90B2610F04700793199 /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				CA19ED80260F49AA00B95C87 /* FeedItem.swift */,
 				CA19ED84260F4AC400B95C87 /* FeedLoader.swift */,
+				CA90D90B2610F04700793199 /* FeedItemsMapper.swift */,
 			);
 			path = "Feed Feature";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				CA19ED85260F4AC400B95C87 /* FeedLoader.swift in Sources */,
 				CA19ED90260F8B5700B95C87 /* RemoteFeedLoader.swift in Sources */,
 				CA19ED81260F49AA00B95C87 /* FeedItem.swift in Sources */,
+				CA90D90C2610F04700793199 /* FeedItemsMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
