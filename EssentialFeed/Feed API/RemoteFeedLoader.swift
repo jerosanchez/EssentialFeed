@@ -64,9 +64,11 @@ private class FeedItemsMapper {
             FeedItem(id: id, description: description, location: location, imageURL: image)
         }
     }
+    
+    private static var OK_200: Int { 200 }
 
     static func map(_ data: Data, from response: HTTPURLResponse) throws -> [FeedItem] {
-        if response.statusCode == 200, let root = try? JSONDecoder().decode(Root.self, from: data) {
+        if response.statusCode == OK_200, let root = try? JSONDecoder().decode(Root.self, from: data) {
             return root.items.map { $0.model }
         } else {
             throw RemoteFeedLoader.Error.invalidData
