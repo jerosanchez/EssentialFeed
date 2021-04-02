@@ -16,6 +16,7 @@
 		CA90D9102610F07900793199 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA90D90F2610F07900793199 /* HTTPClient.swift */; };
 		CA975A222617218200C33951 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA975A212617218200C33951 /* URLSessionHTTPClient.swift */; };
 		CA975A272617651A00C33951 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA975A262617651A00C33951 /* XCTestCase+MemoryLeakTracking.swift */; };
+		CA975A2D2617786C00C33951 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA975A2C2617786C00C33951 /* URLSessionHTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		CA90D90F2610F07900793199 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		CA975A212617218200C33951 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		CA975A262617651A00C33951 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		CA975A2C2617786C00C33951 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +114,9 @@
 			isa = PBXGroup;
 			children = (
 				CA19ED8F260F8B5700B95C87 /* RemoteFeedLoader.swift */,
-				CA90D90F2610F07900793199 /* HTTPClient.swift */,
 				CA90D90B2610F04700793199 /* FeedItemsMapper.swift */,
+				CA90D90F2610F07900793199 /* HTTPClient.swift */,
+				CA975A2C2617786C00C33951 /* URLSessionHTTPClient.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				CA19ED90260F8B5700B95C87 /* RemoteFeedLoader.swift in Sources */,
 				CA19ED81260F49AA00B95C87 /* FeedItem.swift in Sources */,
 				CA90D90C2610F04700793199 /* FeedItemsMapper.swift in Sources */,
+				CA975A2D2617786C00C33951 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
