@@ -1,0 +1,13 @@
+//
+//  Copyright (c) 2021 Jero Sanchez. All rights reserved.
+//
+
+import XCTest
+
+extension XCTestCase {
+    func checkForMemoryLeaks(_ instance: AnyObject, file: StaticString = #filePath, line: UInt = #line) {
+        addTeardownBlock { [weak instance] in
+            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak.", file: file, line: line)
+        }
+    }
+}
