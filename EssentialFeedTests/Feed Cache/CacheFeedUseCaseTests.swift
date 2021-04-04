@@ -20,13 +20,19 @@ class LocalFeedLoader {
             
             if let deletionError = error {
                 completion(deletionError)
-                
             } else {
-                self.store.insert(items, timestamp: self.currentDate()) { [weak self] insertionError in
-                    guard self != nil else { return }
-                    completion(insertionError)
-                }
+                self.cache(items, with: completion)
             }
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func cache(_ items: [FeedItem], with completion: @escaping (Error?) -> Void) {
+        store.insert(items, timestamp: currentDate()) { [weak self] insertionError in
+            guard self != nil else { return }
+            
+            completion(insertionError)
         }
     }
 }
@@ -39,7 +45,7 @@ protocol FeedStore {
     func insert(_ items: [FeedItem], timestamp: Date, completion: @escaping InsertionCompletion)
 }
 
-class FeedCacheUseCaseTests: XCTestCase {
+class CacheFeedUseCaseTests: XCTestCase {
     
     func test_init_doesNotMessageStoreUponCreation() {
         let (_, store) = makeSUT()
