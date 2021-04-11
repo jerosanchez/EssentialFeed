@@ -156,10 +156,6 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         return .failure(error)
     }
     
-    private func anyURL() -> URL {
-        URL(string: "https://any-url.com")!
-    }
-    
     private class HTTPClientSpy: HTTPClient {
         private var receivedMessages = [(url: URL, completion: (HTTPClientResult) -> Void)]()
         
